@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231a7a5a'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23c4e84a' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <title>Event | Windhoek City Runners Club</title>
+  <meta name="description" content="Event details and online registration for Windhoek City Runners Club events." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+      <nav class="nav">
+        <a href="events.html" class="active">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" data-open-cart>🛒 <span class="cart-count">0</span></button>
+        <a href="login.html" class="btn btn-ghost" data-auth="guest">Log in</a>
+        <a href="dashboard.html" class="btn btn-ghost" data-auth="member" style="display:none">My account</a>
+        <a href="membership.html" class="btn btn-primary" data-auth="guest">Join the Club</a>
+        <button class="menu-toggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="events.html" class="active">Events</a>
+    <a href="membership.html">Membership</a>
+    <a href="shop.html">Shop</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" data-auth="guest">Log in</a>
+    <a href="dashboard.html" data-auth="member">My account</a>
+  </div>
+
+  <div class="page-hero">
+    <h1 id="ev-title">Event</h1>
+    <p id="ev-meta"></p>
+  </div>
+
+  <section>
+    <div class="section-inner" style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:2rem;align-items:start">
+      <div>
+        <div class="dash-card">
+          <h3>About this event</h3>
+          <p id="ev-desc" style="color:var(--muted);line-height:1.65"></p>
+          <p style="margin-top:1rem"><strong>Distances:</strong> <span id="ev-distances"></span></p>
+          <p><strong>Location:</strong> <span id="ev-location"></span></p>
+          <p><strong>Start time:</strong> <span id="ev-time"></span></p>
+        </div>
+      </div>
+      <div>
+        <div class="form-card" style="max-width:none">
+          <h2 style="font-family:'Oswald',sans-serif;font-size:1.25rem;margin-bottom:1rem">Register</h2>
+          <div id="reg-success" class="alert alert-success hidden">
+            Registration successful! Confirmation and receipt will be emailed. Payment of N$ <span id="reg-amount"></span> recorded (prototype).
+          </div>
+          <form id="reg-form">
+            <div class="form-group">
+              <label>I am registering as <span class="req">*</span></label>
+              <select name="as" id="reg-as" required>
+                <option value="member">Club member (use membership number)</option>
+                <option value="guest">Guest / non-member</option>
+              </select>
+            </div>
+            <div class="form-group" id="member-num-group">
+              <label>Membership number <span class="req">*</span></label>
+              <input type="text" name="memberNumber" id="member-number" placeholder="e.g. WCRC-2026-0042" />
+              <div class="form-hint">Logged-in members can leave blank — we’ll use your profile.</div>
+            </div>
+            <div id="guest-fields">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>First name <span class="req">*</span></label>
+                  <input type="text" name="firstName" id="g-first" />
+                </div>
+                <div class="form-group">
+                  <label>Last name <span class="req">*</span></label>
+                  <input type="text" name="lastName" id="g-last" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email <span class="req">*</span></label>
+                <input type="email" name="email" id="g-email" />
+              </div>
+              <div class="form-group">
+                <label>Mobile <span class="req">*</span></label>
+                <input type="tel" name="phone" id="g-phone" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Distance <span class="req">*</span></label>
+              <select name="distance" id="reg-distance" required></select>
+            </div>
+            <div class="form-group">
+              <label>Fee</label>
+              <div id="fee-display" style="font-size:1.25rem;font-weight:700;color:var(--green-700)">N$ —</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Register & pay</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="border:none;justify-content:center"><span>© 2026 Windhoek City Runners Club · Prototype</span></div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cart-close">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer hidden" id="cart-footer">
+      <div class="cart-total"><span>Total</span><span id="cart-total-amount">N$ 0</span></div>
+      <button class="btn btn-primary btn-block" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id') || 'nmc-sep';
+    const event = WCRC.EVENTS.find(e => e.id === id) || WCRC.EVENTS[0];
+
+    document.getElementById('ev-title').textContent = event.title;
+    document.getElementById('ev-meta').textContent = `${event.displayDate} · ${event.location} · ${event.type}`;
+    document.getElementById('ev-desc').textContent = event.description;
+    document.getElementById('ev-distances').textContent = event.distances.join(', ');
+    document.getElementById('ev-location').textContent = event.location;
+    document.getElementById('ev-time').textContent = event.time;
+    document.title = event.title + ' | WCRC';
+
+    const distSelect = document.getElementById('reg-distance');
+    distSelect.innerHTML = event.distances.map(d => `<option value="${d}">${d}</option>`).join('');
+
+    const asSelect = document.getElementById('reg-as');
+    const memberGroup = document.getElementById('member-num-group');
+    const guestFields = document.getElementById('guest-fields');
+    const feeDisplay = document.getElementById('fee-display');
+
+    function updateFee() {
+      const isMember = asSelect.value === 'member';
+      feeDisplay.textContent = 'N$ ' + (isMember ? event.feeMember : event.feeGuest);
+      memberGroup.style.display = isMember ? '' : 'none';
+      guestFields.style.display = isMember ? 'none' : '';
+      document.getElementById('g-first').required = !isMember;
+      document.getElementById('g-last').required = !isMember;
+      document.getElementById('g-email').required = !isMember;
+      document.getElementById('g-phone').required = !isMember;
+    }
+    asSelect.addEventListener('change', updateFee);
+    updateFee();
+
+    // Prefill if logged in
+    const user = WCRC.getUser();
+    if (user) {
+      asSelect.value = 'member';
+      updateFee();
+      if (user.memberNumber) document.getElementById('member-number').value = user.memberNumber;
+    }
+
+    document.getElementById('reg-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!WCRC.validateForm(e.target)) return;
+      const isMember = asSelect.value === 'member';
+      const amount = isMember ? event.feeMember : event.feeGuest;
+      document.getElementById('reg-amount').textContent = amount;
+      document.getElementById('reg-form').classList.add('hidden');
+      document.getElementById('reg-success').classList.remove('hidden');
+
+      // Store registration in local profile
+      if (user) {
+        const regs = WCRC.store.get('registrations', []);
+        regs.push({ eventId: event.id, title: event.title, date: event.displayDate, amount, at: new Date().toISOString() });
+        WCRC.store.set('registrations', regs);
+      }
+    });
+  </script>
+</body>
+</html>

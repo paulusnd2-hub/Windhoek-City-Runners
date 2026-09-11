@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231a7a5a'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23c4e84a' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Admin Dashboard | Windhoek City Runners Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-box {
+      background: white;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(13,59,46,0.05);
+    }
+    .stat-box .num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--green-700);
+    }
+    .stat-box .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+    .table-wrap { overflow-x: auto; }
+    table.admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    table.admin-table th {
+      text-align: left;
+      padding: 0.65rem 0.75rem;
+      background: var(--green-50);
+      color: var(--green-800);
+      font-weight: 600;
+      border-bottom: 2px solid var(--green-100);
+    }
+    table.admin-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    table.admin-table tr:hover td { background: #fafafa; }
+    .btn-sm {
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+    }
+    @media (max-width: 800px) {
+      .admin-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="admin.html" class="active">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-ghost">← Public site</a>
+        <a href="#" class="btn btn-primary" data-logout>Log out</a>
+        <button class="menu-toggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="admin.html" class="active">Admin</a>
+    <a href="index.html">Public site</a>
+    <a href="#" data-logout>Log out</a>
+  </div>
+
+  <div class="page-hero">
+    <h1>Club Admin</h1>
+    <p>Membership, events, orders and reports — prototype dashboard for authorised officials.</p>
+  </div>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <a href="#overview" class="active" data-tab>Overview</a>
+      <a href="#members" data-tab>Memberships</a>
+      <a href="#events" data-tab>Events</a>
+      <a href="#orders" data-tab>Shop orders</a>
+      <a href="#reports" data-tab>Reports</a>
+    </aside>
+    <main class="dash-main">
+      <div id="panel-overview">
+        <div class="admin-stats">
+          <div class="stat-box"><div class="num">487</div><div class="label">Active members</div></div>
+          <div class="stat-box"><div class="num">23</div><div class="label">Pending approval</div></div>
+          <div class="stat-box"><div class="num">8</div><div class="label">Upcoming events</div></div>
+          <div class="stat-box"><div class="num">N$ 42k</div><div class="label">Month income (demo)</div></div>
+        </div>
+        <div class="dash-card">
+          <h3>Needs attention</h3>
+          <ul style="font-size:0.9rem;color:var(--slate)">
+            <li style="padding:0.4rem 0" id="needs-attention-pending">• Loading pending applications…</li>
+            <li style="padding:0.4rem 0">• NMC Social Run (12 Sep) — 86 registered, 12 unpaid</li>
+            <li style="padding:0.4rem 0">• 3 shop orders ready for collection / dispatch</li>
+            <li style="padding:0.4rem 0">• 11 memberships due to lapse within 14 days</li>
+          </ul>
+        </div>
+        <div class="dash-card">
+          <h3>Income streams (demo month)</h3>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Stream</th><th>Count</th><th>Amount (NAD)</th></tr></thead>
+              <tbody>
+                <tr><td>Membership fees</td><td>38</td><td>15,200</td></tr>
+                <tr><td>Event fees</td><td>124</td><td>18,640</td></tr>
+                <tr><td>Shop / attire</td><td>27</td><td>8,410</td></tr>
+                <tr><td><strong>Total</strong></td><td></td><td><strong>42,250</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:0.8rem;color:var(--muted);margin-top:0.75rem">Exportable itemised reports available in the live system for reconciliation.</p>
+        </div>
+      </div>
+
+      <div id="panel-members" class="hidden">
+        <div class="dash-card">
+          <h3>Membership applications & status</h3>
+          <div class="alert alert-info" style="font-size:0.85rem">
+            This table is live: applications submitted via the public <a href="membership.html" style="color:#1e40af;font-weight:600">Membership</a> form appear here automatically. Approve or reject them below — in this single-browser prototype, the applicant's own dashboard status updates immediately too.
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Name</th><th>Type</th><th>Status</th><th>Applied</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="admin-members-rows"></tbody>
+            </table>
+          </div>
+          <p style="font-size:0.85rem;color:var(--muted);margin-top:1rem">Live system supports full search, filters by category/status, bulk export and suspension of lapsed profiles.</p>
+        </div>
+      </div>
+
+      <div id="panel-events" class="hidden">
+        <div class="dash-card">
+          <h3>Event management</h3>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Event</th><th>Date</th><th>Registered</th><th>Paid</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="admin-events-rows"></tbody>
+            </table>
+          </div>
+          <button class="btn btn-primary" style="margin-top:1rem">+ Create new event</button>
+        </div>
+        <div class="dash-card">
+          <h3>Bulk communication</h3>
+          <p style="font-size:0.9rem;color:var(--muted);margin-bottom:0.75rem">Send message to registered runners for a selected event (email / SMS in live system).</p>
+          <textarea rows="3" style="width:100%;padding:0.7rem;border-radius:10px;border:1.5px solid #e2e8f0;margin-bottom:0.75rem" placeholder="Message to all registered runners…"></textarea>
+          <button class="btn btn-primary">Send bulk message</button>
+        </div>
+      </div>
+
+      <div id="panel-orders" class="hidden">
+        <div class="dash-card">
+          <h3>Shop orders</h3>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#1042</td><td>Anna N.</td><td>Tee (M), Cap</td><td>N$ 500</td>
+                  <td><span class="status-badge status-pending">Paid – pack</span></td>
+                  <td><button class="btn btn-primary btn-sm">Mark collected</button></td>
+                </tr>
+                <tr>
+                  <td>#1041</td><td>Guest</td><td>Hoodie (L)</td><td>N$ 520</td>
+                  <td><span class="status-badge status-active">Collected</span></td>
+                  <td><button class="btn btn-ghost btn-sm">View</button></td>
+                </tr>
+                <tr>
+                  <td>#1039</td><td>John S.</td><td>Singlet (S)</td><td>N$ 280</td>
+                  <td><span class="status-badge status-pending">Paid – pack</span></td>
+                  <td><button class="btn btn-primary btn-sm">Mark collected</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-reports" class="hidden">
+        <div class="dash-card">
+          <h3>Reports & exports</h3>
+          <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem">Generate exportable reports for financial reconciliation (CSV / Excel in live system).</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+            <button class="btn btn-ghost">Active members</button>
+            <button class="btn btn-ghost">Lapsed / expired</button>
+            <button class="btn btn-ghost">Members by category</button>
+            <button class="btn btn-ghost">Event registrations</button>
+            <button class="btn btn-ghost">Payment reconciliation</button>
+            <button class="btn btn-ghost">Income by stream</button>
+          </div>
+          <p style="font-size:0.85rem;color:var(--muted);margin-top:1.25rem">
+            Prototype only — buttons illustrate the admin capabilities required by the ToR (membership reports, event reports by distance/age/gender/status, itemised payment exports).
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="border:none;justify-content:center">
+      <span>© 2026 Windhoek City Runners Club · Admin prototype · Role-based access in live system</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Role-gated access: only club officials (role === 'admin') may view this panel.
+    const currentUser = WCRC.getUser();
+    if (!currentUser || currentUser.role !== 'admin') {
+      window.location.href = 'login.html?redirect=admin';
+    }
+
+    document.getElementById('admin-events-rows').innerHTML = WCRC.EVENTS.map(e => `
+      <tr>
+        <td>${e.title}</td>
+        <td>${e.displayDate}</td>
+        <td>${Math.floor(40 + Math.random()*80)}</td>
+        <td>${Math.floor(30 + Math.random()*60)}</td>
+        <td>
+          <button class="btn btn-ghost btn-sm">Edit</button>
+          <button class="btn btn-ghost btn-sm">Message</button>
+        </td>
+      </tr>
+    `).join('');
+
+    // ---------- Live membership applications table ----------
+    const typeLabel = { adult: 'Adult', junior: 'Junior', renewal: 'Renewal' };
+    const statusLabel = {
+      pending: { cls: 'status-pending', text: 'Pending' },
+      active: { cls: 'status-active', text: 'Active' },
+      lapsed: { cls: 'status-lapsed', text: 'Lapsed' },
+      rejected: { cls: 'status-lapsed', text: 'Rejected' }
+    };
+    function renderMembers() {
+      const apps = WCRC.getApplications();
+      const rows = document.getElementById('admin-members-rows');
+      rows.innerHTML = apps.map(a => {
+        const s = statusLabel[a.status] || statusLabel.pending;
+        const name = a.firstName + ' ' + a.lastName + (a.type === 'junior' ? ' (Junior)' : '');
+        const badgeText = (a.status === 'pending' && a.indemnity) ? s.text + ' + indemnity' : s.text;
+        let actions = '';
+        if (a.status === 'pending') {
+          actions = `<button class="btn btn-primary btn-sm" data-approve="${a.id}">Approve</button> <button class="btn btn-ghost btn-sm" data-reject="${a.id}">Reject</button>`;
+        } else if (a.status === 'lapsed') {
+          actions = `<button class="btn btn-ghost btn-sm" data-remind="${a.id}">Remind</button>`;
+        } else {
+          actions = `<button class="btn btn-ghost btn-sm" data-view="${a.id}">View</button>`;
+        }
+        return `
+          <tr>
+            <td>${name}</td>
+            <td>${typeLabel[a.type] || a.type}</td>
+            <td><span class="status-badge ${s.cls}">${badgeText}</span></td>
+            <td>${a.appliedAt || '—'}</td>
+            <td>${actions}</td>
+          </tr>`;
+      }).join('');
+
+      const pendingCount = apps.filter(a => a.status === 'pending').length;
+      const indemnityCount = apps.filter(a => a.status === 'pending' && a.indemnity).length;
+      document.getElementById('needs-attention-pending').textContent =
+        `• ${pendingCount} membership application${pendingCount === 1 ? '' : 's'} awaiting approval (including ${indemnityCount} junior with indemnity)`;
+
+      rows.querySelectorAll('[data-approve]').forEach(btn => btn.addEventListener('click', () => {
+        WCRC.updateApplicationStatus(btn.dataset.approve, 'active');
+        renderMembers();
+      }));
+      rows.querySelectorAll('[data-reject]').forEach(btn => btn.addEventListener('click', () => {
+        WCRC.updateApplicationStatus(btn.dataset.reject, 'rejected');
+        renderMembers();
+      }));
+      rows.querySelectorAll('[data-remind],[data-view]').forEach(btn => btn.addEventListener('click', () => {
+        alert('Prototype: this would trigger an email/SMS reminder or open the member record in the live system.');
+      }));
+    }
+    renderMembers();
+
+    document.querySelectorAll('[data-tab]').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('[data-tab]').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const id = tab.getAttribute('href').slice(1);
+        ['overview','members','events','orders','reports'].forEach(p => {
+          document.getElementById('panel-' + p).classList.toggle('hidden', p !== id);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

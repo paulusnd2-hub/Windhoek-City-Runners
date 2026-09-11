@@ -1,0 +1,8 @@
+# Windhoek City Runners Club — replace YOURDOMAIN below once the site is hosted on its final domain.
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /login.html
+
+Sitemap: https://YOURDOMAIN/sitemap.xml

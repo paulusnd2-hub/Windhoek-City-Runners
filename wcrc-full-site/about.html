@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231a7a5a'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23c4e84a' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <title>About | Windhoek City Runners Club</title>
+  <meta name="description" content="About Windhoek City Runners Club — community running for every level in Windhoek, Namibia." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" data-open-cart>🛒 <span class="cart-count">0</span></button>
+        <a href="login.html" class="btn btn-ghost" data-auth="guest">Log in</a>
+        <a href="dashboard.html" class="btn btn-ghost" data-auth="member" style="display:none">My account</a>
+        <a href="membership.html" class="btn btn-primary" data-auth="guest">Join the Club</a>
+        <button class="menu-toggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="events.html">Events</a>
+    <a href="membership.html">Membership</a>
+    <a href="shop.html">Shop</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" data-auth="guest">Log in</a>
+    <a href="dashboard.html" data-auth="member">My account</a>
+    <a href="membership.html" class="btn btn-primary" style="margin-top:0.5rem">Join the Club</a>
+  </div>
+
+  <div class="page-hero">
+    <h1>About WCRC</h1>
+    <p>“This is my City, I must run it.”</p>
+  </div>
+
+  <section>
+    <div class="section-inner" style="max-width:720px">
+      <div class="dash-card">
+        <p style="font-size:1.05rem;line-height:1.7;color:var(--slate);margin-bottom:1.25rem">
+          Windhoek City Runners Club is an active running club serving runners of all levels in Namibia.
+          We organise social runs, challenges and races, support members in their training goals, and
+          foster a welcoming community that puts people first.
+        </p>
+        <p style="font-size:1.05rem;line-height:1.7;color:var(--slate);margin-bottom:1.25rem">
+          This website is the Club’s main digital platform for membership, event registration, club attire
+          and news — designed to reduce manual administration and make it easy for every runner to take part.
+        </p>
+        <p style="font-size:0.9rem;color:var(--muted)">
+          This page is part of an interactive prototype prepared in response to the WCRC Terms of Reference
+          for a new website, membership system, event management system and online shop.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color:white"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+        <p>“This is my City, I must run it.” Community running for every level in Windhoek, Namibia.</p>
+        <form class="footer-newsletter" data-newsletter-form>
+          <label style="display:block;color:white;font-size:0.8rem;font-weight:600;margin:1rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.04em">Stay in the loop</label>
+          <div style="display:flex;gap:0.5rem;max-width:280px">
+            <input type="email" required placeholder="you@example.com" style="flex:1;padding:0.55rem 0.7rem;border-radius:8px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:white;font-size:0.85rem" />
+            <button type="submit" class="btn btn-primary" style="padding:0.55rem 0.9rem;font-size:0.8rem">Join</button>
+          </div>
+          <p class="footer-newsletter-ok hidden" style="color:var(--lime);font-size:0.78rem;margin-top:0.5rem">Thanks — you're subscribed! (prototype)</p>
+        </form>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="events.html">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <a href="login.html">Log in</a>
+        <a href="dashboard.html">My profile</a>
+        <a href="membership.html">Renew membership</a>
+        <a href="admin.html">Club officials</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:whkcityrunners@gmail.com">whkcityrunners@gmail.com</a>
+        <a href="contact.html">Windhoek, Namibia</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Windhoek City Runners Club. Prototype for proposal demonstration.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cart-close">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer hidden" id="cart-footer">
+      <div class="cart-total"><span>Total</span><span id="cart-total-amount">N$ 0</span></div>
+      <button class="btn btn-primary btn-block" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231a7a5a'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23c4e84a' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <title>Membership | Windhoek City Runners Club</title>
+  <meta name="description" content="Join or renew Windhoek City Runners Club membership online. Adult and junior categories available." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="membership.html" class="active">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" data-open-cart>🛒 <span class="cart-count">0</span></button>
+        <a href="login.html" class="btn btn-ghost" data-auth="guest">Log in</a>
+        <a href="dashboard.html" class="btn btn-ghost" data-auth="member" style="display:none">My account</a>
+        <a href="membership.html" class="btn btn-primary" data-auth="guest">Join the Club</a>
+        <button class="menu-toggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="events.html">Events</a>
+    <a href="membership.html" class="active">Membership</a>
+    <a href="shop.html">Shop</a>
+    <a href="news.html">News</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html" data-auth="guest">Log in</a>
+    <a href="dashboard.html" data-auth="member">My account</a>
+  </div>
+
+  <div class="page-hero">
+    <h1>Club Membership</h1>
+    <p>Join or renew online. Adults and juniors welcome. Secure payment and approval workflow.</p>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div id="form-success" class="alert alert-success hidden">
+        <strong>Application received!</strong> Your membership application has been submitted for approval.
+        You will receive a confirmation email. Payment of N$ <span id="paid-amount">0</span> will be processed once approved.
+        <br><br>
+        <a href="dashboard.html" class="btn btn-primary" style="margin-top:0.5rem">Go to my dashboard</a>
+      </div>
+
+      <div class="form-card" id="membership-form-wrap">
+        <h2 style="font-family:'Oswald',sans-serif;font-size:1.4rem;margin-bottom:0.35rem">Membership application</h2>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem">Complete the form below. Junior applications require parent/guardian details and indemnity.</p>
+
+        <form id="membership-form">
+          <div class="form-group">
+            <label>Membership type <span class="req">*</span></label>
+            <select name="type" id="mem-type" required>
+              <option value="">Select…</option>
+              <option value="adult">Adult — N$ 450 / year</option>
+              <option value="junior">Junior (under 18) — N$ 250 / year</option>
+              <option value="renewal">Renewal (existing member)</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First name <span class="req">*</span></label>
+              <input type="text" name="firstName" required />
+              <div class="form-error">Required</div>
+            </div>
+            <div class="form-group">
+              <label>Last name <span class="req">*</span></label>
+              <input type="text" name="lastName" required />
+              <div class="form-error">Required</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" required />
+              <div class="form-error">Required</div>
+            </div>
+            <div class="form-group">
+              <label>Mobile <span class="req">*</span></label>
+              <input type="tel" name="phone" placeholder="+264…" required />
+              <div class="form-error">Required</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date of birth <span class="req">*</span></label>
+              <input type="date" name="dob" required />
+              <div class="form-error">Required</div>
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select name="gender">
+                <option value="">Prefer not to say</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>ID / Passport number <span class="req">*</span></label>
+            <input type="text" name="idNumber" required />
+            <div class="form-error">Required</div>
+          </div>
+
+          <div class="form-group">
+            <label>Residential address</label>
+            <textarea name="address" rows="2"></textarea>
+          </div>
+
+          <div id="junior-fields" class="hidden">
+            <hr style="border:none;border-top:1px solid #e2e8f0;margin:1.25rem 0" />
+            <h3 style="font-size:1rem;margin-bottom:1rem;color:var(--green-800)">Parent / Guardian details (required for juniors)</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Guardian full name <span class="req">*</span></label>
+                <input type="text" name="guardianName" id="guardian-name" />
+              </div>
+              <div class="form-group">
+                <label>Guardian mobile <span class="req">*</span></label>
+                <input type="tel" name="guardianPhone" id="guardian-phone" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Guardian email</label>
+              <input type="email" name="guardianEmail" />
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="indemnity" name="indemnity" />
+              <label for="indemnity">I confirm I am the parent/guardian and accept the club indemnity terms for this junior member. <span class="req">*</span></label>
+            </div>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the club constitution and code of conduct, and consent to the processing of my personal information for membership purposes. <span class="req">*</span></label>
+          </div>
+
+          <div class="alert alert-info" style="font-size:0.85rem">
+            After submission, authorised club officials will review your application. Payment is collected upon approval. You will receive email confirmation and a membership number once activated.
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Submit application</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="color:white"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+        <p>“This is my City, I must run it.” Community running for every level in Windhoek, Namibia.</p>
+        <form class="footer-newsletter" data-newsletter-form>
+          <label style="display:block;color:white;font-size:0.8rem;font-weight:600;margin:1rem 0 0.5rem;text-transform:uppercase;letter-spacing:0.04em">Stay in the loop</label>
+          <div style="display:flex;gap:0.5rem;max-width:280px">
+            <input type="email" required placeholder="you@example.com" style="flex:1;padding:0.55rem 0.7rem;border-radius:8px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:white;font-size:0.85rem" />
+            <button type="submit" class="btn btn-primary" style="padding:0.55rem 0.9rem;font-size:0.8rem">Join</button>
+          </div>
+          <p class="footer-newsletter-ok hidden" style="color:var(--lime);font-size:0.78rem;margin-top:0.5rem">Thanks — you're subscribed! (prototype)</p>
+        </form>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="events.html">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+      </div>
+      <div>
+        <h4>Members</h4>
+        <a href="login.html">Log in</a>
+        <a href="dashboard.html">My profile</a>
+        <a href="membership.html">Renew membership</a>
+        <a href="admin.html">Club officials</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:whkcityrunners@gmail.com">whkcityrunners@gmail.com</a>
+        <a href="contact.html">Windhoek, Namibia</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Windhoek City Runners Club. Prototype for proposal demonstration.</span>
+      <span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cart-close">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer hidden" id="cart-footer">
+      <div class="cart-total"><span>Total</span><span id="cart-total-amount">N$ 0</span></div>
+      <button class="btn btn-primary btn-block" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    const typeSelect = document.getElementById('mem-type');
+    const juniorFields = document.getElementById('junior-fields');
+    typeSelect.addEventListener('change', () => {
+      const isJunior = typeSelect.value === 'junior';
+      juniorFields.classList.toggle('hidden', !isJunior);
+      document.getElementById('guardian-name').required = isJunior;
+      document.getElementById('guardian-phone').required = isJunior;
+      document.getElementById('indemnity').required = isJunior;
+    });
+
+    document.getElementById('membership-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!WCRC.validateForm(e.target)) return;
+      if (typeSelect.value === 'junior' && !document.getElementById('indemnity').checked) {
+        alert('Please accept the indemnity terms for junior membership.');
+        return;
+      }
+      const fd = new FormData(e.target);
+      const data = Object.fromEntries(fd.entries());
+      const fees = { adult: 450, junior: 250, renewal: 450 };
+      const amount = fees[data.type] || 450;
+      const appliedDisplay = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+      // Simulate creating a pending member
+      const user = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        membershipType: data.type,
+        status: 'pending',
+        role: 'member',
+        memberNumber: null,
+        appliedAt: new Date().toISOString()
+      };
+      WCRC.setUser(user);
+      WCRC.store.set('lastApplication', { ...data, amount });
+
+      // Add to the real applications queue so club officials can review & approve it in Admin → Memberships
+      WCRC.addApplication({
+        id: 'app-' + Date.now(),
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phone: data.phone,
+        type: data.type,
+        status: 'pending',
+        appliedAt: appliedDisplay,
+        indemnity: !!data.indemnity
+      });
+
+      document.getElementById('paid-amount').textContent = amount;
+      document.getElementById('membership-form-wrap').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

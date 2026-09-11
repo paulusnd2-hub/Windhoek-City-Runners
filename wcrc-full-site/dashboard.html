@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231a7a5a'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='28' font-weight='bold' fill='%23c4e84a' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>My account | Windhoek City Runners Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo"><div class="logo-mark">WCRC</div><span>Windhoek City<br>Runners Club</span></a>
+      <nav class="nav">
+        <a href="events.html">Events</a>
+        <a href="membership.html">Membership</a>
+        <a href="shop.html">Shop</a>
+        <a href="news.html">News</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-btn" data-open-cart>🛒 <span class="cart-count">0</span></button>
+        <a href="dashboard.html" class="btn btn-ghost">My account</a>
+        <a href="#" class="btn btn-primary" data-logout>Log out</a>
+        <button class="menu-toggle"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="events.html">Events</a>
+    <a href="membership.html">Membership</a>
+    <a href="shop.html">Shop</a>
+    <a href="dashboard.html" class="active">My account</a>
+    <a href="#" data-logout>Log out</a>
+  </div>
+
+  <div class="page-hero">
+    <h1>Welcome, <span data-user-name>Member</span></h1>
+    <p>Your membership, events and profile in one place.</p>
+  </div>
+
+  <div class="dash-layout" id="dash">
+    <aside class="dash-sidebar">
+      <a href="#overview" class="active" data-tab>Overview</a>
+      <a href="#profile" data-tab>Profile</a>
+      <a href="#events" data-tab>My events</a>
+      <a href="#membership" data-tab>Membership</a>
+    </aside>
+    <main class="dash-main">
+      <div id="panel-overview">
+        <div class="dash-card">
+          <h3>Membership status</h3>
+          <p style="margin-bottom:0.75rem">
+            <span class="status-badge" id="status-badge">—</span>
+            <span id="member-num" style="margin-left:0.75rem;font-size:0.9rem;color:var(--muted)"></span>
+          </p>
+          <p id="status-msg" style="color:var(--muted);font-size:0.9rem"></p>
+        </div>
+        <div class="dash-card">
+          <h3>Quick actions</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:0.6rem">
+            <a href="events.html" class="btn btn-primary">Browse events</a>
+            <a href="shop.html" class="btn btn-ghost">Shop kit</a>
+            <a href="membership.html" class="btn btn-ghost">Renew</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-profile" class="hidden">
+        <div class="dash-card">
+          <h3>Your details</h3>
+          <div id="profile-fields" style="display:grid;gap:0.75rem;font-size:0.95rem"></div>
+          <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted)">In the live system you can edit these fields and save changes.</p>
+        </div>
+      </div>
+
+      <div id="panel-events" class="hidden">
+        <div class="dash-card">
+          <h3>Event registrations</h3>
+          <div id="my-events"></div>
+        </div>
+      </div>
+
+      <div id="panel-membership" class="hidden">
+        <div class="dash-card">
+          <h3>Membership</h3>
+          <div id="mem-details"></div>
+          <a href="membership.html" class="btn btn-primary" style="margin-top:1rem">Renew / re-apply</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-bottom" style="border:none;justify-content:center"><span>© 2026 Windhoek City Runners Club · Prototype</span></div>
+  </footer>
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header"><h3>Your cart</h3><button class="cart-close" id="cart-close">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer hidden" id="cart-footer">
+      <div class="cart-total"><span>Total</span><span id="cart-total-amount">N$ 0</span></div>
+      <button class="btn btn-primary btn-block" id="checkout-btn">Checkout</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    const user = WCRC.getUser();
+    if (!user) {
+      window.location.href = 'login.html';
+    } else {
+      const badge = document.getElementById('status-badge');
+      const statusMap = {
+        active: { cls: 'status-active', label: 'Active', msg: 'Your membership is active. Enjoy events and member benefits.' },
+        pending: { cls: 'status-pending', label: 'Pending approval', msg: 'Your application is with club officials. You will be notified once activated.' },
+        lapsed: { cls: 'status-lapsed', label: 'Lapsed', msg: 'Membership has lapsed. Please renew to restore access.' },
+        rejected: { cls: 'status-lapsed', label: 'Not approved', msg: 'Your application was not approved. Please contact the club committee or re-apply with updated details.' }
+      };
+      const s = statusMap[user.status] || statusMap.pending;
+      badge.className = 'status-badge ' + s.cls;
+      badge.textContent = s.label;
+      document.getElementById('status-msg').textContent = s.msg;
+      document.getElementById('member-num').textContent = user.memberNumber ? 'No. ' + user.memberNumber : '';
+
+      document.getElementById('profile-fields').innerHTML = `
+        <div><strong>Name:</strong> ${user.firstName} ${user.lastName || ''}</div>
+        <div><strong>Email:</strong> ${user.email}</div>
+        <div><strong>Phone:</strong> ${user.phone || '—'}</div>
+        <div><strong>Type:</strong> ${user.membershipType || '—'}</div>
+      `;
+
+      document.getElementById('mem-details').innerHTML = `
+        <p><strong>Status:</strong> ${s.label}</p>
+        <p><strong>Type:</strong> ${user.membershipType || '—'}</p>
+        <p><strong>Member number:</strong> ${user.memberNumber || 'Assigned on activation'}</p>
+        <p><strong>Joined / applied:</strong> ${user.joinedAt || user.appliedAt || '—'}</p>
+      `;
+
+      const regs = WCRC.store.get('registrations', []);
+      const myEv = document.getElementById('my-events');
+      if (regs.length === 0) {
+        myEv.innerHTML = '<p style="color:var(--muted)">No event registrations yet. <a href="events.html" style="color:var(--green-700)">Browse events →</a></p>';
+      } else {
+        myEv.innerHTML = regs.map(r => `
+          <div style="padding:0.75rem 0;border-bottom:1px solid #f1f5f9">
+            <strong>${r.title}</strong><br>
+            <span style="font-size:0.85rem;color:var(--muted)">${r.date} · N$ ${r.amount}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Tabs
+    document.querySelectorAll('[data-tab]').forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelectorAll('[data-tab]').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const id = tab.getAttribute('href').slice(1);
+        ['overview', 'profile', 'events', 'membership'].forEach(p => {
+          document.getElementById('panel-' + p).classList.toggle('hidden', p !== id);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
